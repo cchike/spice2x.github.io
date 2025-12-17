@@ -678,6 +678,24 @@ target_link_libraries(spicetools_spice64
 target_link_libraries(spicetools_spice64 PUBLIC winscard)
 set_target_properties(spicetools_spice64 PROPERTIES PREFIX "")
 set_target_properties(spicetools_spice64 PROPERTIES OUTPUT_NAME "spice64")
+set_target_properties(spicetools_spice64 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY_DEBUG          "C:/Users/cchik/Documents/DDR World Full Data August 2025"
+    RUNTIME_OUTPUT_DIRECTORY_RELEASE        "C:/Users/cchik/Documents/DDR World Full Data August 2025"
+    RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "C:/Users/cchik/Documents/DDR World Full Data August 2025"
+    RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL     "C:/Users/cchik/Documents/DDR World Full Data August 2025"
+
+    # keep the PDB alongside the EXE too
+    PDB_OUTPUT_DIRECTORY_DEBUG              "C:/Users/cchik/Documents/DDR World Full Data August 2025"
+    PDB_OUTPUT_DIRECTORY_RELEASE            "C:/Users/cchik/Documents/DDR World Full Data August 2025"
+    PDB_OUTPUT_DIRECTORY_RELWITHDEBINFO     "C:/Users/cchik/Documents/DDR World Full Data August 2025"
+    PDB_OUTPUT_DIRECTORY_MINSIZEREL         "C:/Users/cchik/Documents/DDR World Full Data August 2025"
+)
+target_compile_options(spicetools_spice64 PRIVATE
+    $<$<CONFIG:Release>:/Z7>  
+)
+target_link_options(spicetools_spice64 PRIVATE
+    $<$<CONFIG:Release>:/DEBUG:NONE>
+)
 target_compile_definitions(spicetools_spice64 PRIVATE SPICE64=1)
 
 IF(NOT MSVC)
@@ -844,7 +862,7 @@ set_target_properties(spicetools_spice spicetools_spice_laa spicetools_spice_lin
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/spicetools/32")
 
 # output 64bit
-set_target_properties(spicetools_spice64 spicetools_spice64_linux spicetools_stubs_kbt64 spicetools_stubs_kld64 spicetools_stubs_nvcuda spicetools_stubs_nvcuvid spicetools_stubs_nvEncodeAPI64
+set_target_properties(spicetools_spice64_linux spicetools_stubs_kbt64 spicetools_stubs_kld64 spicetools_stubs_nvcuda spicetools_stubs_nvcuvid spicetools_stubs_nvEncodeAPI64
         PROPERTIES
         ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/archive64"
         LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/spicetools/64"
